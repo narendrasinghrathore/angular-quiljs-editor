@@ -19,14 +19,14 @@ export class EditorComponent implements OnInit {
   editorConfig = {
     toolbar: [
       ['bold', 'italic', 'underline', 'strike'],
-      ['blockquote', 'code-block'], 
+      ['blockquote', 'code-block'],
       [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
       [{ 'align': [] }],
       [{ 'font': [] }],
-      [{ 'script': 'sub'}, { 'script': 'super' }],
-      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-      [{ 'size': ['10px','12px','14px','16px','18px','22px', '24px','26px','30px', '36px'] }], 
-      ['clean'] 
+      [{ 'script': 'sub' }, { 'script': 'super' }],
+      [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+      [{ 'size': ['10px', '12px', '14px', '16px', '18px', '22px', '24px', '26px', '30px', '36px'] }],
+      ['clean']
     ]
 
   }
@@ -45,8 +45,17 @@ export class EditorComponent implements OnInit {
   }
 
 
-  onContent(e){
+  onContent(e) {
     console.log(e)
+  }
+
+  get parsedHtml() {
+    const s: string = this.editorForm.get('editor').value;
+    if (s) {
+      return s.replace(/<p><br><\/p>/g, '<br/>');
+    }
+    return '';
+
   }
 
 }
